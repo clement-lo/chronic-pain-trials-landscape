@@ -1,0 +1,55 @@
+# Chronic pain trials landscape
+
+A reproducible map of interventional chronic pain trials registered on ClinicalTrials.gov with a start date from {P[start_min]} to {P[start_max]}, in {P[n_groups]} condition groups: chronic postsurgical pain, fibromyalgia, chronic low back and other musculoskeletal pain, neuropathic pain, and complex regional pain syndrome. Headache and migraine, cancer pain and acute postoperative pain are excluded.
+
+Data from ClinicalTrials.gov, accessed {N[pull_date]}.
+
+The one-page results are in [outputs/summary.md](outputs/summary.md).
+
+## How the pipeline works
+
+- **Pull** (`src/pull.py`). Sends {N[n_queries]} searches to the ClinicalTrials.gov API v2, each limited to interventional studies that started in the date window. Every page of every response is saved unchanged in `data/raw/<pull date>/`, and the exact search strings, counts and pull date are written to `data/query_log.md`. If a request fails, the script stops rather than skipping it.
+- **Build** (`src/build.py`). Merges the searches, keeps one record per NCT ID, and applies the rules in `src/rules.py` to decide whether each trial is in scope and which group it joins. Writes `data/trials.csv`, `data/excluded.csv` (with the reason for every exclusion), `outputs/summary_table.md` and review samples in `outputs/review/`.
+- **Analyse** (`src/analyse.py`). Adds the HK/Asia subset, sorts the stated reasons for stopping (`src/stop_reasons.py`), works out the share of finished trials with results posted, and maps each primary outcome to the IMMPACT core domains (`src/immpact.py`).
+- **Figures** (`src/figures.py`). Draws the two figures as PNG ({P[figure_dpi]} dpi) and SVG in colour-blind-safe colours.
+- **Report** (`src/report.py`). Fills `templates/summary.md.tmpl` and `templates/README.md.tmpl` with values from `outputs/numbers.json`, so the text cannot drift from the data. To change the wording, edit the templates, not the generated files.
+- **Check** (`tests/check_numbers.py`). Confirms that every number in `outputs/summary.md` and this README appears in `outputs/numbers.json`, that both files match their templates, that the summary stays within {P[summary_max_words]} words, and that both figures exist.
+
+## The rules in brief
+
+- A trial joins a group when its condition list or title names the condition. Musculoskeletal and radicular pain also need evidence that the pain is chronic: the word "chronic" or "persistent", a diagnosis of osteoarthritis, or inclusion criteria requiring pain for at least {P[chronic_min_months]} months ({P[chronic_min_weeks]} weeks).
+- A surgical trial counts as chronic postsurgical pain only when its condition or an outcome refers to chronic or persistent pain, or it measures pain at a follow-up {P[chronic_min_weeks]} weeks or more after surgery.
+- Headache and migraine, cancer pain (including chemotherapy-induced neuropathy), dental and jaw pain, and acute postoperative pain are excluded, and these exclusions override group matches.
+- A trial matching two or more groups is counted once, as "Multiple".
+- Missing registry fields are left missing and counted, never filled in.
+- Stop reasons and outcome domains are sorted with keyword rules; reasons and measures that match nothing are listed in `outputs/review/` rather than forced into a category.
+
+## How to rerun
+
+You need Python (tested with `python3.12`) and an internet connection for a fresh pull.
+
+```bash
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+./run_pipeline.sh                # pull today's data, then rebuild everything
+./run_pipeline.sh {N[pull_date]}     # rebuild from a pull already saved in data/raw/
+```
+
+The registry changes every day, so a new pull gives slightly different numbers. Raw downloads are not committed to git; keep `data/raw/<pull date>/` to reproduce a given pull exactly.
+
+## Outputs
+
+- `data/trials.csv`: included trials, one row per NCT ID.
+- `data/excluded.csv`: every retrieved trial that was not included, with the reason.
+- `data/query_log.md`: search strings, counts and pull date.
+- `outputs/summary.md`: the one-page summary.
+- `outputs/summary_table.md` and `outputs/summary_table_asia.md`: counts by group, phase, status and sponsor class, and enrolment.
+- `outputs/stage2_tables.md`: stop reasons, results posted and IMMPACT tables.
+- `outputs/hk_trials.md`: every included trial with a Hong Kong site.
+- `outputs/stop_reasons.csv` and `outputs/immpact_mapping.csv`: the classification of every stopped trial and every primary outcome.
+- `outputs/fig1_trials_per_year` and `outputs/fig2_stop_reasons`: the figures, as PNG and SVG.
+- `outputs/numbers.json`: every number quoted in the text.
+
+## Licence and credit
+
+The code is released under the MIT licence (see `LICENSE`). Trial data come from ClinicalTrials.gov, a service of the US National Library of Medicine: Data from ClinicalTrials.gov, accessed {N[pull_date]}.

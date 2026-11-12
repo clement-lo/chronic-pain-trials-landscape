@@ -1,0 +1,6 @@
+# Raw API responses are cached locally and re-downloadable; not committed
+data/raw/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

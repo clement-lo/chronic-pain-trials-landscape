@@ -1,0 +1,31 @@
+nct_id,group,measure,time_frame,domains,n_domains,matched_on
+NCT02688569,Fibromyalgia,Change in self-reported ratings of Pain Sensitivity and Pain Unpleasantness on Daily Diaries,"Participants will complete the pain ratings daily for 56 days from Baseline to Post-Treatment , and for 14 days in 3-month Follow-Up (Week 21-22)",Pain intensity,1,title
+NCT03318458,Fibromyalgia,FSS (Fatigue Severity Scale),At the beginning and at three months,Physical functioning,1,description
+NCT02369120,MSK,Pain intensity,2 weeks,Pain intensity,1,title
+NCT05651763,MSK,Pain intensity (numerical pain rating scale),up to 1 month of follow-up,Pain intensity,1,title
+NCT07403253,MSK,The Western Ontario and McMaster Universities Arthritis Index (WOMAC):,from enrollment to the end treatment of 4 weeks,Physical functioning,1,title
+NCT04677933,MSK,Safety and tolerability(Incidence of Treatment-Emergent Adverse Events) measure through 12-lead ECG,Monitored from Screening Visit till the end of the study visit(day 45).,Symptoms and adverse events,1,title
+NCT02911987,MSK,pain,week 6,Pain intensity,1,title
+NCT05785884,MSK,BPI pain change,"Baseline (week 0), immediately before the intervention (week 3), 3 weeks after initiating the intervention (week 6), immediately after the intervention (week 9)",Pain intensity,1,title
+NCT02725411,MSK,Percentage of Participants With Individual Adjudicated Joint Safety Outcome/Event,Baseline up to Week 80,Symptoms and adverse events,1,title
+NCT05197777,MSK,Subjective and perception pain (score 1 to 10 numerical),Change from baseline at 6 weeks,Pain intensity,1,title
+NCT02845271,MSK,"Change from baseline in weekly mean score of Western Ontario and McMaster Universities Arthritis Index (WOMAC) A1 pain subscore (walking pain) collected daily in the target knee, as measured by the Visual Analogue Scale (VAS) 0-100",Averaged over 4 weeks (up to Day 28),Pain intensity; Physical functioning,2,title
+NCT03318458,Fibromyalgia,MRS (Menopause Rating Scale),At the beginning and at three months,Physical functioning; Emotional functioning,2,description
+NCT06869928,Neuropathic,Implementation Acceptability,"End of the Pain Pathway, an average of 1 year to 18 months",Pain intensity; Improvement and satisfaction,2,description
+NCT05318521,MSK,"Change from baseline in the WOMAC visual analogue 3.1 Pain intensity subscale, over 12 weeks of treatment. [Time frame: Baseline week up to Week 12]","at baseline week (Day -6 to Day 1) and at Day 8, 15, 22, 29, 43, 57 and Week 12 (Day 79 to Day 85).",Pain intensity; Physical functioning,2,title
+NCT05103462,MSK,Change in Fatigue from baseline to 26 weeks,"baseline, 26 weeks",Physical functioning; Emotional functioning,2,description
+NCT06320938,MSK,36-Item Short Form Health Survey Questionnaire,"Baseline,8 weeks, 6 months",Pain intensity; Physical functioning; Emotional functioning,3,description
+NCT07283237,MSK,Oxford Knee Score (OKS),"Baseline, 6 weeks (post-intervention), 3 months, and 6 months follow-up.",Pain intensity; Physical functioning,2,description
+NCT06127745,MSK,Performance,6 months,Pain intensity; Physical functioning,2,description
+NCT06869928,Neuropathic,Implementation Reach,"Baseline and end of the Pain Pathway, an average of 1 year to 18 months",Pain intensity; Participant disposition,2,description
+NCT04084795,Fibromyalgia,Change in the impact of fatigue as assessed by the Brief Fatigue Inventory (BFI),Change from baseline to visits at 6 and 12 months,Physical functioning; Emotional functioning,2,description
+NCT06620965,MSK,Assessment of Joint Range of Motion (ROM),From enrollment to the end of treatment at 4 weeks,,0,none
+NCT03116230,MSK,Change in Peak Knee Flexion Moment (%Bw*Ht),Baseline and 4 week follow-up,,0,none
+NCT05997069,MSK,Isometric endurance of back extensor muscles using prone isometric chest raise test,Baseline and after 15 week,,0,none
+NCT05932433,Multiple,Descriptive parameters,From enrollment to the end of the intervention at 6 weeks,,0,none
+NCT07605143,Fibromyalgia,Global Cognitive Function (MoCA Total Score),Baseline and immediately after completion of the 6-week intervention,,0,none
+NCT06318910,MSK,EMG of lower leg muscles,"Baseline, 3 months",,0,none
+NCT05485220,MSK,Spirometer measurements 3,8 weeks,,0,none
+NCT04597112,Neuropathic,Electrogoniometer,10 minutes,,0,none
+NCT03888807,MSK,Change in Step Length,Knee Flexion Range of Motion will be measured for both topical applications at initial walk and post-topical walk. The session will last a total of 30 minutes,,0,none
+NCT06050083,MSK,System Usability Scale (SUS),8 Week Timepoint,,0,none

@@ -1,0 +1,822 @@
+{
+  "pull_date": "2026-11-12",
+  "api_version": "2.0.5",
+  "data_timestamp": "2026-11-10T10:00:05",
+  "queries": {
+    "cpsp_named": {
+      "n": 250,
+      "missing_start_not_pulled": 1
+    },
+    "cpsp_postop_candidates": {
+      "n": 4441,
+      "missing_start_not_pulled": 12
+    },
+    "cpsp_named_in_outcome": {
+      "n": 135,
+      "missing_start_not_pulled": 0
+    },
+    "fibromyalgia": {
+      "n": 740,
+      "missing_start_not_pulled": 2
+    },
+    "msk_back_neck": {
+      "n": 3109,
+      "missing_start_not_pulled": 11
+    },
+    "msk_other": {
+      "n": 3043,
+      "missing_start_not_pulled": 8
+    },
+    "msk_oa_pain": {
+      "n": 2296,
+      "missing_start_not_pulled": 11
+    },
+    "msk_chronic_pain_combo": {
+      "n": 424,
+      "missing_start_not_pulled": 0
+    },
+    "neuropathic_core": {
+      "n": 1022,
+      "missing_start_not_pulled": 8
+    },
+    "neuropathic_radicular": {
+      "n": 390,
+      "missing_start_not_pulled": 1
+    },
+    "crps": {
+      "n": 111,
+      "missing_start_not_pulled": 0
+    }
+  },
+  "n_queries": 11,
+  "pulled_sum_over_queries": 15961,
+  "pulled_unique": 12413,
+  "included": 5043,
+  "excluded": 7370,
+  "excluded_by_reason": {
+    "acute postoperative pain": 3461,
+    "no in-scope condition in conditions/titles": 2937,
+    "dental, jaw or other orofacial pain (outside the five groups)": 753,
+    "cancer pain (incl. chemotherapy/radiotherapy-induced)": 104,
+    "headache or migraine": 99,
+    "cancer pain (cancer condition, non-surgical pain)": 16
+  },
+  "by_group": {
+    "CPSP": 506,
+    "Fibromyalgia": 518,
+    "MSK": 2975,
+    "Neuropathic": 761,
+    "CRPS": 71,
+    "Multiple": 212
+  },
+  "groups_matched_any": {
+    "CPSP": 606,
+    "Fibromyalgia": 554,
+    "MSK": 3106,
+    "Neuropathic": 906,
+    "CRPS": 105
+  },
+  "by_phase": {
+    "Not applicable": 4100,
+    "Phase 2": 250,
+    "Phase 4": 223,
+    "Phase 3": 197,
+    "Phase 1": 120,
+    "Phase 2/3": 55,
+    "Phase 1/2": 47,
+    "Early phase 1": 46,
+    "Missing": 5
+  },
+  "by_status": {
+    "Completed": 2877,
+    "Unknown status": 956,
+    "Recruiting": 539,
+    "Terminated": 180,
+    "Active, not recruiting": 174,
+    "Withdrawn": 136,
+    "Not yet recruiting": 122,
+    "Enrolling by invitation": 48,
+    "Suspended": 11
+  },
+  "by_sponsor_class": {
+    "Other (universities, hospitals, non-profits)": 4272,
+    "Industry": 577,
+    "Other government": 104,
+    "Other US federal": 76,
+    "Network": 10,
+    "Individual": 4
+  },
+  "cpsp_basis": {
+    "named in condition/title": 264,
+    "pain measured >=12 weeks after surgery": 158,
+    "outcome names chronic postsurgical pain": 101,
+    "outcome refers to chronic/persistent pain": 83
+  },
+  "cpsp_outcome_level": {
+    "secondary": 240,
+    "primary": 102
+  },
+  "chronicity_from": {
+    "condition/title": 1870,
+    "inclusion criteria": 706,
+    "osteoarthritis": 603
+  },
+  "sensitivity_no_inclusion_criteria": {
+    "included": 4369,
+    "by_group": {
+      "CPSP": 512,
+      "Fibromyalgia": 520,
+      "MSK": 2378,
+      "Neuropathic": 722,
+      "CRPS": 75,
+      "Multiple": 162
+    }
+  },
+  "start_date_type": {
+    "ACTUAL": 4256,
+    "ESTIMATED": 514,
+    "Missing": 273
+  },
+  "missing": {
+    "phase": 5,
+    "overall_status": 0,
+    "start_date": 0,
+    "primary_completion_date": 0,
+    "enrollment": 1,
+    "enrollment_type": 1,
+    "lead_sponsor": 0,
+    "sponsor_class": 0,
+    "countries": 336,
+    "primary_outcomes": 0
+  },
+  "enrolment": {
+    "CPSP": {
+      "all_types": {
+        "n": 505,
+        "median": 80.0,
+        "q1": 50.0,
+        "q3": 148.0
+      },
+      "actual_only": {
+        "n": 295,
+        "median": 64.0,
+        "q1": 35.5,
+        "q3": 117.0
+      },
+      "missing": 1,
+      "zero_recorded": 17
+    },
+    "Fibromyalgia": {
+      "all_types": {
+        "n": 518,
+        "median": 60.0,
+        "q1": 36.0,
+        "q3": 98.75
+      },
+      "actual_only": {
+        "n": 355,
+        "median": 54.0,
+        "q1": 34.0,
+        "q3": 90.0
+      },
+      "missing": 0,
+      "zero_recorded": 10
+    },
+    "MSK": {
+      "all_types": {
+        "n": 2975,
+        "median": 56.0,
+        "q1": 35.5,
+        "q3": 90.0
+      },
+      "actual_only": {
+        "n": 2014,
+        "median": 51.0,
+        "q1": 32.0,
+        "q3": 86.0
+      },
+      "missing": 0,
+      "zero_recorded": 63
+    },
+    "Neuropathic": {
+      "all_types": {
+        "n": 761,
+        "median": 48.0,
+        "q1": 23.0,
+        "q3": 90.0
+      },
+      "actual_only": {
+        "n": 481,
+        "median": 40.0,
+        "q1": 15.0,
+        "q3": 83.0
+      },
+      "missing": 0,
+      "zero_recorded": 32
+    },
+    "CRPS": {
+      "all_types": {
+        "n": 71,
+        "median": 40.0,
+        "q1": 24.0,
+        "q3": 61.0
+      },
+      "actual_only": {
+        "n": 40,
+        "median": 35.0,
+        "q1": 14.5,
+        "q3": 62.0
+      },
+      "missing": 0,
+      "zero_recorded": 2
+    },
+    "Multiple": {
+      "all_types": {
+        "n": 212,
+        "median": 50.0,
+        "q1": 26.75,
+        "q3": 100.0
+      },
+      "actual_only": {
+        "n": 134,
+        "median": 44.5,
+        "q1": 17.0,
+        "q3": 98.75
+      },
+      "missing": 0,
+      "zero_recorded": 12
+    },
+    "All": {
+      "all_types": {
+        "n": 5042,
+        "median": 58.0,
+        "q1": 33.0,
+        "q3": 99.0
+      },
+      "actual_only": {
+        "n": 3319,
+        "median": 50.0,
+        "q1": 30.0,
+        "q3": 90.0
+      },
+      "missing": 1,
+      "zero_recorded": 136
+    }
+  },
+  "borderline_buckets": {
+    "musculoskeletal pain without evidence of chronicity": 2146,
+    "osteoarthritis without a pain word": 195,
+    "radiculopathy/sciatica without evidence of chronicity": 155,
+    "orofacial/jaw musculoskeletal pain": 140,
+    "group matched, then excluded: acute postoperative pain": 96,
+    "group matched, then excluded: cancer pain (incl. chemotherapy/radiotherapy-induced)": 54,
+    "group matched, then excluded: headache or migraine": 47,
+    "group matched, then excluded: cancer pain (cancer condition, non-surgical pain)": 16,
+    "dental/orofacial trial matched CPSP": 10,
+    "neuropathic term only in an 'acute' string": 3
+  },
+  "parameters": {
+    "start_min": "2015-01-01",
+    "start_max": "2025-12-31",
+    "start_year_min": 2015,
+    "start_year_max": 2025,
+    "n_groups": 5,
+    "n_immpact_domains": 6,
+    "chronic_min_weeks": 12,
+    "chronic_min_months": 3,
+    "results_lag_months": 12,
+    "results_cutoff_date": "2025-11-12",
+    "n_asia_places": 9,
+    "figure_dpi": 300,
+    "summary_max_words": 450,
+    "review_sample": 30
+  },
+  "derived": {
+    "pct_msk": 59.0,
+    "pct_phase_not_applicable": 81.3,
+    "n_drug_phase": 938,
+    "pct_industry": 11.4,
+    "pct_other_sponsor": 84.7,
+    "pct_unknown_status": 19.0,
+    "n_multiple": 212
+  },
+  "by_start_year": {
+    "CPSP": {
+      "2015": 35,
+      "2016": 23,
+      "2017": 27,
+      "2018": 42,
+      "2019": 39,
+      "2020": 50,
+      "2021": 67,
+      "2022": 45,
+      "2023": 63,
+      "2024": 61,
+      "2025": 54
+    },
+    "Fibromyalgia": {
+      "2015": 37,
+      "2016": 32,
+      "2017": 33,
+      "2018": 32,
+      "2019": 57,
+      "2020": 44,
+      "2021": 56,
+      "2022": 56,
+      "2023": 45,
+      "2024": 64,
+      "2025": 62
+    },
+    "MSK": {
+      "2015": 149,
+      "2016": 141,
+      "2017": 175,
+      "2018": 216,
+      "2019": 253,
+      "2020": 222,
+      "2021": 320,
+      "2022": 324,
+      "2023": 376,
+      "2024": 364,
+      "2025": 435
+    },
+    "Neuropathic": {
+      "2015": 55,
+      "2016": 47,
+      "2017": 49,
+      "2018": 61,
+      "2019": 67,
+      "2020": 62,
+      "2021": 59,
+      "2022": 90,
+      "2023": 80,
+      "2024": 99,
+      "2025": 92
+    },
+    "CRPS": {
+      "2015": 5,
+      "2016": 6,
+      "2017": 8,
+      "2018": 7,
+      "2019": 4,
+      "2020": 0,
+      "2021": 5,
+      "2022": 7,
+      "2023": 9,
+      "2024": 10,
+      "2025": 10
+    },
+    "Multiple": {
+      "2015": 10,
+      "2016": 16,
+      "2017": 20,
+      "2018": 17,
+      "2019": 5,
+      "2020": 14,
+      "2021": 33,
+      "2022": 29,
+      "2023": 23,
+      "2024": 22,
+      "2025": 23
+    },
+    "All": {
+      "2015": 291,
+      "2016": 265,
+      "2017": 312,
+      "2018": 375,
+      "2019": 425,
+      "2020": 392,
+      "2021": 540,
+      "2022": 551,
+      "2023": 596,
+      "2024": 620,
+      "2025": 676
+    }
+  },
+  "asia": {
+    "n": 424,
+    "pct_of_included": 8.4,
+    "n_no_country": 336,
+    "by_place": {
+      "Mainland China": 181,
+      "South Korea": 88,
+      "Taiwan": 66,
+      "Hong Kong": 39,
+      "Thailand": 29,
+      "Japan": 28,
+      "Singapore": 4,
+      "Malaysia": 3,
+      "Macau": 0
+    },
+    "by_group": {
+      "CPSP": 90,
+      "Fibromyalgia": 29,
+      "MSK": 184,
+      "Neuropathic": 106,
+      "CRPS": 3,
+      "Multiple": 12
+    },
+    "by_sponsor_class": {
+      "Other (universities, hospitals, non-profits)": 335,
+      "Industry": 76,
+      "Other government": 12,
+      "Network": 1
+    },
+    "pct_industry": 17.9,
+    "enrolment": {
+      "CPSP": {
+        "all_types": {
+          "n": 90,
+          "median": 122.0,
+          "q1": 80.0,
+          "q3": 273.0
+        },
+        "actual_only": {
+          "n": 39,
+          "median": 92.0,
+          "q1": 67.0,
+          "q3": 199.5
+        },
+        "missing": 0,
+        "zero_recorded": 1
+      },
+      "Fibromyalgia": {
+        "all_types": {
+          "n": 29,
+          "median": 92.0,
+          "q1": 60.0,
+          "q3": 175.0
+        },
+        "actual_only": {
+          "n": 14,
+          "median": 67.0,
+          "q1": 40.5,
+          "q3": 101.0
+        },
+        "missing": 0,
+        "zero_recorded": 1
+      },
+      "MSK": {
+        "all_types": {
+          "n": 184,
+          "median": 73.5,
+          "q1": 40.0,
+          "q3": 144.0
+        },
+        "actual_only": {
+          "n": 108,
+          "median": 68.0,
+          "q1": 36.75,
+          "q3": 150.0
+        },
+        "missing": 0,
+        "zero_recorded": 1
+      },
+      "Neuropathic": {
+        "all_types": {
+          "n": 106,
+          "median": 102.0,
+          "q1": 42.5,
+          "q3": 185.5
+        },
+        "actual_only": {
+          "n": 50,
+          "median": 131.0,
+          "q1": 43.25,
+          "q3": 300.75
+        },
+        "missing": 0,
+        "zero_recorded": 1
+      },
+      "CRPS": {
+        "all_types": {
+          "n": 3,
+          "median": 84.0,
+          "q1": 54.5,
+          "q3": 133.0
+        },
+        "actual_only": {
+          "n": 3,
+          "median": 84.0,
+          "q1": 54.5,
+          "q3": 133.0
+        },
+        "missing": 0,
+        "zero_recorded": 0
+      },
+      "Multiple": {
+        "all_types": {
+          "n": 12,
+          "median": 42.0,
+          "q1": 31.0,
+          "q3": 68.25
+        },
+        "actual_only": {
+          "n": 6,
+          "median": 36.0,
+          "q1": 24.5,
+          "q3": 61.0
+        },
+        "missing": 0,
+        "zero_recorded": 0
+      },
+      "All": {
+        "all_types": {
+          "n": 424,
+          "median": 90.0,
+          "q1": 50.0,
+          "q3": 177.75
+        },
+        "actual_only": {
+          "n": 220,
+          "median": 83.5,
+          "q1": 40.0,
+          "q3": 161.25
+        },
+        "missing": 0,
+        "zero_recorded": 4
+      }
+    },
+    "hong_kong": {
+      "n": 39,
+      "pct_of_asia": 9.2,
+      "by_group": {
+        "CPSP": 8,
+        "Fibromyalgia": 2,
+        "MSK": 28,
+        "Neuropathic": 1,
+        "CRPS": 0,
+        "Multiple": 0
+      },
+      "by_sponsor_class": {
+        "Other (universities, hospitals, non-profits)": 34,
+        "Industry": 5
+      },
+      "by_status": {
+        "Completed": 13,
+        "Unknown status": 12,
+        "Recruiting": 11,
+        "Withdrawn": 2,
+        "Active, not recruiting": 1
+      },
+      "lead_sponsors": {
+        "The Hong Kong Polytechnic University": 16,
+        "The University of Hong Kong": 7,
+        "Chinese University of Hong Kong": 7,
+        "Pacira Pharmaceuticals, Inc": 1,
+        "Regeneron Pharmaceuticals": 1,
+        "Queen Elizabeth Hospital, Hong Kong": 1,
+        "Sun Pharmaceutical Industries Limited": 1,
+        "Alice Ho Miu Ling Nethersole Hospital": 1,
+        "Monash University": 1,
+        "Levicept": 1,
+        "Hong Kong Baptist University": 1,
+        "Paradigm Biopharmaceuticals Ltd.": 1
+      },
+      "hk_only_sites": 32
+    }
+  },
+  "stop_reasons": {
+    "n_stopped": 327,
+    "by_status": {
+      "TERMINATED": 180,
+      "WITHDRAWN": 136,
+      "SUSPENDED": 11
+    },
+    "main_reason": {
+      "COVID-19": 34,
+      "Safety or futility": 25,
+      "Low accrual": 113,
+      "Funding": 42,
+      "Sponsor or business decision": 26,
+      "Site or investigator": 33,
+      "Other": 47,
+      "Not stated": 7
+    },
+    "main_reason_pct": {
+      "COVID-19": 10.4,
+      "Safety or futility": 7.6,
+      "Low accrual": 34.6,
+      "Funding": 12.8,
+      "Sponsor or business decision": 8.0,
+      "Site or investigator": 10.1,
+      "Other": 14.4,
+      "Not stated": 2.1
+    },
+    "terminated_withdrawn": {
+      "TERMINATED": {
+        "COVID-19": 19,
+        "Safety or futility": 23,
+        "Low accrual": 79,
+        "Funding": 19,
+        "Sponsor or business decision": 17,
+        "Site or investigator": 7,
+        "Other": 14,
+        "Not stated": 2
+      },
+      "WITHDRAWN": {
+        "COVID-19": 13,
+        "Safety or futility": 2,
+        "Low accrual": 33,
+        "Funding": 22,
+        "Sponsor or business decision": 7,
+        "Site or investigator": 25,
+        "Other": 30,
+        "Not stated": 4
+      }
+    },
+    "n_terminated_withdrawn": 316,
+    "n_multiple_categories": 94,
+    "n_unclassified": 16,
+    "n_not_stated": 7,
+    "any_mention": {
+      "COVID-19": 34,
+      "Safety or futility": 25,
+      "Low accrual": 134,
+      "Funding": 53,
+      "Sponsor or business decision": 43,
+      "Site or investigator": 41
+    }
+  },
+  "results_posted": {
+    "cutoff_date": "2025-11-12",
+    "eligible": 2834,
+    "posted": 458,
+    "pct": 16.2,
+    "excluded_completion_too_recent": 223,
+    "excluded_no_pcd": 0,
+    "pcd_estimated_among_eligible": 1,
+    "by_sponsor_class": {
+      "Other (universities, hospitals, non-profits)": {
+        "n": 2336,
+        "posted": 254,
+        "pct": 10.9
+      },
+      "Industry": {
+        "n": 388,
+        "posted": 173,
+        "pct": 44.6
+      },
+      "Other government": {
+        "n": 53,
+        "posted": 2,
+        "pct": 3.8
+      },
+      "Other US federal": {
+        "n": 50,
+        "posted": 29,
+        "pct": 58.0
+      },
+      "Network": {
+        "n": 6,
+        "posted": 0,
+        "pct": 0.0
+      },
+      "Individual": {
+        "n": 1,
+        "posted": 0,
+        "pct": 0.0
+      }
+    },
+    "by_group": {
+      "CPSP": {
+        "n": 244,
+        "posted": 32,
+        "pct": 13.1
+      },
+      "Fibromyalgia": {
+        "n": 314,
+        "posted": 44,
+        "pct": 14.0
+      },
+      "MSK": {
+        "n": 1741,
+        "posted": 260,
+        "pct": 14.9
+      },
+      "Neuropathic": {
+        "n": 397,
+        "posted": 90,
+        "pct": 22.7
+      },
+      "CRPS": {
+        "n": 32,
+        "posted": 7,
+        "pct": 21.9
+      },
+      "Multiple": {
+        "n": 106,
+        "posted": 25,
+        "pct": 23.6
+      }
+    },
+    "by_status": {
+      "COMPLETED": {
+        "n": 2660,
+        "posted": 403,
+        "pct": 15.2
+      },
+      "TERMINATED": {
+        "n": 174,
+        "posted": 55,
+        "pct": 31.6
+      }
+    },
+    "asia": {
+      "n": 198,
+      "posted": 27,
+      "pct": 13.6
+    },
+    "hong_kong": {
+      "n": 12,
+      "posted": 4,
+      "pct": 33.3
+    }
+  },
+  "immpact": {
+    "n_measures": 11855,
+    "n_trials": 5043,
+    "matched_on": {
+      "title": 7294,
+      "none": 3410,
+      "description": 1151
+    },
+    "measures_by_domain": {
+      "Pain intensity": 5064,
+      "Physical functioning": 2783,
+      "Emotional functioning": 680,
+      "Improvement and satisfaction": 184,
+      "Symptoms and adverse events": 419,
+      "Participant disposition": 225
+    },
+    "measures_by_domain_pct": {
+      "Pain intensity": 42.7,
+      "Physical functioning": 23.5,
+      "Emotional functioning": 5.7,
+      "Improvement and satisfaction": 1.6,
+      "Symptoms and adverse events": 3.5,
+      "Participant disposition": 1.9
+    },
+    "measures_multi_domain": 824,
+    "measures_multi_domain_pct": 7.0,
+    "measures_none": 3410,
+    "measures_none_pct": 28.8,
+    "trials_with_domain": {
+      "Pain intensity": 3542,
+      "Physical functioning": 1780,
+      "Emotional functioning": 429,
+      "Improvement and satisfaction": 146,
+      "Symptoms and adverse events": 268,
+      "Participant disposition": 147
+    },
+    "trials_with_domain_pct": {
+      "Pain intensity": 70.2,
+      "Physical functioning": 35.3,
+      "Emotional functioning": 8.5,
+      "Improvement and satisfaction": 2.9,
+      "Symptoms and adverse events": 5.3,
+      "Participant disposition": 2.9
+    },
+    "trials_no_domain": 659,
+    "trials_no_domain_pct": 13.1,
+    "trials_pain_intensity_pct_by_group": {
+      "CPSP": 68.2,
+      "Fibromyalgia": 57.5,
+      "MSK": 70.3,
+      "Neuropathic": 79.5,
+      "CRPS": 66.2,
+      "Multiple": 73.6
+    }
+  },
+  "text": {
+    "starts_first_year": 291,
+    "starts_last_year": 676,
+    "enrol_median": 58,
+    "enrol_q1": 33,
+    "enrol_q3": 99,
+    "asia_enrol_median": 90,
+    "stop_low_accrual": 113,
+    "stop_low_accrual_pct": 34.6,
+    "stop_funding": 42,
+    "stop_funding_pct": 12.8,
+    "stop_covid": 34,
+    "stop_covid_pct": 10.4,
+    "results_pct_industry": 44.6,
+    "results_pct_other": 10.9,
+    "immpact_pain_pct": 70.2,
+    "immpact_physical_pct": 35.3,
+    "immpact_emotional_pct": 8.5,
+    "immpact_global_pct": 2.9,
+    "immpact_adverse_pct": 5.3,
+    "immpact_disposition_pct": 2.9,
+    "asia_china": 181,
+    "asia_korea": 88,
+    "asia_taiwan": 66,
+    "hk_msk": 28,
+    "hk_cpsp": 8,
+    "hk_academic": 34,
+    "hk_polyu": 16,
+    "hk_hku": 7,
+    "hk_cuhk": 7
+  }
+}
