@@ -55,6 +55,10 @@ def end_of_period(date):
     return pd.Timestamp(date)
 
 
+def fmt_m(m):
+    return f"{m['median']:,.0f} ({m['q1']:,.0f}–{m['q3']:,.0f})" if m else "–"
+
+
 def countries_of(s):
     return s.split("; ") if isinstance(s, str) else []
 
@@ -97,6 +101,36 @@ def main():
         for g in GROUP_ORDER}
     N["by_start_year"]["All"] = {str(y): int((trials["start_year"] == y).sum()) for y in years}
 
+    # ------------------------------------------------------- intervention types
+    # Reviewer 2 flag 4: "no drug phase" is not the same as "no drug". Use the
+    # registry's intervention types instead. Drug = DRUG, BIOLOGICAL or
+    # COMBINATION_PRODUCT; placebo arms are often typed DRUG, so this counts
+    # trials that list at least one drug-type intervention.
+    DRUG_TYPES = {"DRUG", "BIOLOGICAL", "COMBINATION_PRODUCT"}
+    itypes = trials["intervention_types"].fillna("").map(lambda s: set(filter(None, s.split("; "))))
+    has_drug = itypes.map(lambda s: bool(s & DRUG_TYPES))
+    no_types = itypes.map(len).eq(0)
+    all_types = sorted(set().union(*itypes))
+    N["interventions"] = {
+        "drug_types": sorted(DRUG_TYPES),
+        "n_drug": int(has_drug.sum()), "pct_drug": pct(int(has_drug.sum()), T),
+        "n_no_drug": int((~has_drug & ~no_types).sum()), "pct_no_drug": pct(int((~has_drug & ~no_types).sum()), T),
+        "n_missing": int(no_types.sum()),
+        "any_type": {ty: int(itypes.map(lambda s, ty=ty: ty in s).sum()) for ty in all_types},
+        "phase_na_with_drug": int(((trials["phase"] == "Not applicable") & has_drug).sum()),
+    }
+    tables += ["## Intervention types", "",
+               f"From the registry's interventions field. A trial can list several types. "
+               f"{N['interventions']['n_missing']} trials list none.", "",
+               "| Type | Trials listing it | % of trials |", "|---|---:|---:|"]
+    for ty, n in sorted(N["interventions"]["any_type"].items(), key=lambda kv: -kv[1]):
+        tables.append(f"| {ty} | {n:,} | {pct(n, T)} |")
+    tables += ["", f"At least one drug, biological or combination product: "
+               f"{N['interventions']['n_drug']:,} ({N['interventions']['pct_drug']}%); none: "
+               f"{N['interventions']['n_no_drug']:,} ({N['interventions']['pct_no_drug']}%). "
+               f"{N['interventions']['phase_na_with_drug']:,} trials with phase 'Not applicable' still "
+               f"list a drug-type intervention.", ""]
+
     # ------------------------------------------------------------- HK / Asia
     trials["asia_sites"] = trials["countries"].map(
         lambda s: sorted({ASIA_LABELS.get(c, c) for c in countries_of(s) if c in ASIA}))
@@ -106,6 +140,15 @@ def main():
     for c in ASIA:
         lab = ASIA_LABELS.get(c, c)
         by_place[lab] = int(trials["countries"].map(lambda s, c=c: c in countries_of(s)).sum()) + by_place.get(lab, 0)
+    # Reviewer 2 flag 5: compare Asia with trials whose listed sites are all
+    # outside Asia (trials listing no country are left out of both)
+    non_asia = trials[trials["countries"].notna() & (trials["asia_sites"].str.len() == 0)]
+    e_non = enrolment_stats(non_asia)["All"]
+    N["non_asia"] = {
+        "n": len(non_asia),
+        "pct_industry": pct(int((non_asia["sponsor_class"] == "INDUSTRY").sum()), len(non_asia)),
+        "enrolment": e_non,
+    }
     N["asia"] = {
         "n": len(asia), "pct_of_included": pct(len(asia), T),
         "n_no_country": int(trials["countries"].isna().sum()),
@@ -164,6 +207,9 @@ def main():
             s: {c: int(((tw["overall_status"] == s) & (tw["stop_reason"] == c)).sum()) for c in STOP_ORDER}
             for s in ["TERMINATED", "WITHDRAWN"]},
         "n_terminated_withdrawn": len(tw),
+        "n_suspended": int((stopped["overall_status"] == "SUSPENDED").sum()),
+        "tw_main_reason": {c: int((tw["stop_reason"] == c).sum()) for c in STOP_ORDER},
+        "tw_main_reason_pct": {c: pct(int((tw["stop_reason"] == c).sum()), len(tw)) for c in STOP_ORDER},
         "n_multiple_categories": int((res.str[1].str.len() > 1).sum()),
         "n_unclassified": int(stopped["unclassified"].sum()),
         "n_not_stated": int((stopped["stop_reason"] == "Not stated").sum()),
@@ -307,8 +353,35 @@ def main():
         "hk_polyu": int(hk_sp.str.contains("Polytechnic").sum()),
         "hk_hku": int((hk_sp.str.contains("University of Hong Kong") & ~hk_sp.str.contains("Chinese")).sum()),
         "hk_cuhk": int(hk_sp.str.contains("Chinese University of Hong Kong").sum()),
+        # added for Reviewer 2 flags 4-6 and 8
+        "n_drug": N["interventions"]["n_drug"], "pct_drug": N["interventions"]["pct_drug"],
+        "pct_no_drug": N["interventions"]["pct_no_drug"],
+        "results_n_industry": rp.get("Industry", {}).get("n"),
+        "results_n_other": rp.get(SPONSOR_LABELS["OTHER"], {}).get("n"),
+        "non_asia_n": N["non_asia"]["n"],
+        "non_asia_pct_industry": N["non_asia"]["pct_industry"],
+        "non_asia_enrol_median": round(N["non_asia"]["enrolment"]["all_types"]["median"]),
+        "enrol_n_actual": N["enrolment"]["All"]["actual_only"]["n"],
+        "tw_n": sr["n_terminated_withdrawn"],
+        "tw_terminated": sr["by_status"].get("TERMINATED", 0),
+        "tw_withdrawn": sr["by_status"].get("WITHDRAWN", 0),
+        "n_suspended": sr["n_suspended"],
+        "tw_low_accrual": sr["tw_main_reason"]["Low accrual"], "tw_low_accrual_pct": sr["tw_main_reason_pct"]["Low accrual"],
+        "tw_funding": sr["tw_main_reason"]["Funding"], "tw_funding_pct": sr["tw_main_reason_pct"]["Funding"],
+        "tw_covid": sr["tw_main_reason"]["COVID-19"], "tw_covid_pct": sr["tw_main_reason_pct"]["COVID-19"],
+        "cpsp_any": sum(N["cpsp_type"].values()),
+        "cpsp_prevention": N["cpsp_type"].get("prevention", 0),
+        "cpsp_treatment": N["cpsp_type"].get("treatment", 0),
+        "immpact_n_measures": I["n_measures"],
     }
 
+    tables += ["## Asia compared with trials sited only outside Asia", "",
+               "| | Trials | Industry-led % | Median enrolment, planned or actual (IQR) |", "|---|---:|---:|---:|",
+               f"| Any site in the nine Asian places | {len(asia):,} | {N['asia']['pct_industry']} | "
+               f"{fmt_m(N['asia']['enrolment']['All']['all_types'])} |",
+               f"| All listed sites outside Asia | {len(non_asia):,} | {N['non_asia']['pct_industry']} | "
+               f"{fmt_m(N['non_asia']['enrolment']['all_types'])} |",
+               "", f"{N['asia']['n_no_country']:,} trials list no site country and are in neither row.", ""]
     (OUT / "stage2_tables.md").write_text("\n".join(tables))
     (OUT / "numbers.json").write_text(json.dumps(N, indent=2, default=int))
 

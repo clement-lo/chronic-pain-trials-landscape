@@ -132,7 +132,11 @@ def flatten(nct, s, hits):
         "n_primary_outcomes": len(prim),
         "cpsp_basis": c["cpsp_basis"],
         "cpsp_outcome_level": c["cpsp_level"],
+        "cpsp_type": c["cpsp_type"],
         "chronicity_from": c["chronic_from"],
+        "intervention_types": "; ".join(sorted({i.get("type") for i in
+                                                 (g(ps, "armsInterventionsModule", "interventions") or [])
+                                                 if i.get("type")})) or None,
         "excluded_reason": c["excluded"],
         "review_note": c["notes"],
         "matched_queries": "; ".join(hits),
@@ -238,8 +242,8 @@ def main():
             "start_date", "start_date_type", "primary_completion_date", "primary_completion_date_type",
             "enrollment", "enrollment_type", "lead_sponsor", "sponsor_class", "countries",
             "why_stopped", "results_posted", "results_first_post_date", "primary_outcomes",
-            "n_primary_outcomes", "cpsp_basis", "cpsp_outcome_level", "chronicity_from",
-            "matched_queries"]
+            "n_primary_outcomes", "intervention_types", "cpsp_type", "cpsp_basis",
+            "cpsp_outcome_level", "chronicity_from", "matched_queries"]
     inc[keep].to_csv(ROOT / "data" / "trials.csv", index=False)
     exc[["nct_id", "title", "conditions", "groups_matched", "excluded_reason", "review_note",
          "cpsp_basis", "matched_queries"]].to_csv(ROOT / "data" / "excluded.csv", index=False)
@@ -268,6 +272,8 @@ def main():
                          .value_counts().to_dict(),
         "cpsp_outcome_level": inc.loc[inc["groups_matched"].str.contains("CPSP"), "cpsp_outcome_level"]
                                  .value_counts().to_dict(),
+        "cpsp_type": inc.loc[inc["groups_matched"].str.contains("CPSP"), "cpsp_type"]
+                        .value_counts().to_dict(),
         "chronicity_from": inc["chronicity_from"].value_counts().to_dict(),
         "sensitivity_no_inclusion_criteria": {
             "included": int(strict["group"].notna().sum()),

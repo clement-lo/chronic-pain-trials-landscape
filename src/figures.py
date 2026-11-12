@@ -95,10 +95,11 @@ def fig_stop_reasons(N):
     ax.set_xlim(0, max(a + b for a, b in zip(term, wdr)) * 1.12)
     ax.legend(loc="lower right", frameon=False, fontsize=8.5)
     fig.text(0.0, -0.02,
-             f"Main stated reason for stopping, n = {n_t + n_w:,} trials: terminated (n = {n_t:,}) "
-             f"and withdrawn (n = {n_w:,}).\nOne main reason per trial, by fixed precedence: COVID-19, "
-             f"safety or futility, low accrual, funding,\nsponsor, site or investigator, other "
-             f"(keyword rules in src/stop_reasons.py).\n"
+             f"Main stated reason for stopping, n = {n_t + n_w:,} trials: terminated after enrolment began "
+             f"(n = {n_t:,})\nand withdrawn before anyone enrolled (n = {n_w:,}). Suspended (paused) trials, "
+             f"n = {N['stop_reasons']['n_suspended']}, are not shown.\nReasons as stated in the registry; one "
+             f"main reason per trial, assigned by keyword rules with fixed precedence:\nCOVID-19, safety or "
+             f"futility, low accrual, funding, sponsor, site or investigator, other (src/stop_reasons.py).\n"
              f"Data from ClinicalTrials.gov, accessed {N['pull_date']} (registry data dated {N['data_date']}).",
              ha="left", va="top", fontsize=8, color=INK2)
     fig.tight_layout()

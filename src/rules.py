@@ -46,7 +46,7 @@ PAIN_ANY = re.compile(rf"\b{PAINWORD}\b", FLAGS)
 SURGERY = (r"\b(?:surgery|surgeries|surgical|operation|operative|mastectom\w*|lumpectom\w*|"
            r"thoracotom\w*|thoracoscop\w*|sternotom\w*|herniorrhaph\w*|hernia repair|hernioplast\w*|"
            r"arthroplast\w*|joint replacement|knee replacement|hip replacement|amputation|"
-           r"c(?:a)?esarean|cesarian|hysterectom\w*|craniotom\w*|laminectom\w*|discectom\w*|"
+           r"c(?:a)?esarean|cesarian|hysterectom\w*|craniotom\w*|laminectom\w*|(?:micro-?)?discectom\w*|"
            r"fusion|cholecystectom\w*|resection|repair|reconstruction|arthroscop\w*|"
            r"\bTKA|\bTHA|\bTKR|\bTHR|\bUKA)")
 
@@ -174,23 +174,38 @@ def is_pain_measure(o):
     return bool(PAIN_OUTCOME.search(m) or (PAIN_SCALE.search(m) and PAIN_OUTCOME.search(o.get("description") or "")))
 
 
-def cpsp_from_outcomes(outcomes):
-    """Return (basis, level) for the outcome-based CPSP rules, or (None, None).
+def cpsp_from_outcomes(outcomes, surgical=False):
+    """Outcome evidence that pain was assessed 12 weeks or more after surgery.
 
-    outcomes: list of dicts with keys level ('primary'/'secondary'), measure,
-    description, time_frame. Primary outcomes and stronger bases win.
+    Every route now checks the duration (Reviewer 2 flag 1): an outcome that
+    names chronic postsurgical pain or chronic/persistent pain counts only if
+    its time frame (or, failing that, its title) reaches 12 weeks; any other
+    pain measure also needs a time frame that reads as follow-up.
+    Returns (basis, level) of the strongest qualifying outcome, primary first,
+    or (None, None). When the trial is already surgical (`surgical=True`), the
+    abbreviation "CPSP" in an outcome is read as chronic postsurgical pain (in
+    other contexts it can mean central post-stroke pain). Bases:
+      "outcome names chronic postsurgical pain, >=12 weeks"   (named)
+      "outcome on chronic/persistent pain, >=12 weeks"        (chronic)
+      "pain measured >=12 weeks after surgery"                (any pain measure)
     """
     found = []
     for o in outcomes:
-        text = " ".join(filter(None, [o.get("measure"), o.get("description")]))
-        if CPSP_NAMED.search(text):
-            found.append(("outcome names chronic postsurgical pain", o["level"], 0))
-        elif CHRONIC_PAIN.search(text):
-            found.append(("outcome refers to chronic/persistent pain", o["level"], 1))
-        elif is_pain_measure(o) and timeframe_is_followup(o.get("time_frame")):
-            d = max_timeframe_days(o.get("time_frame"))
-            if d is not None and d >= MIN_CHRONIC_DAYS:
-                found.append(("pain measured >=12 weeks after surgery", o["level"], 2))
+        measure = o.get("measure") or ""
+        text = " ".join(filter(None, [measure, o.get("description")]))
+        tf = o.get("time_frame")
+        d_tf, d_title = max_timeframe_days(tf), max_timeframe_days(measure)
+        days = max([d for d in (d_tf, d_title) if d is not None], default=None)
+        long_enough = days is not None and days >= MIN_CHRONIC_DAYS
+        named_here = CPSP_NAMED.search(text) or (surgical and CPSP_ABBREV.search(text))
+        if named_here and long_enough:
+            found.append(("outcome names chronic postsurgical pain, >=12 weeks", o["level"], 0))
+        elif CHRONIC_PAIN.search(text) and long_enough:
+            found.append(("outcome on chronic/persistent pain, >=12 weeks", o["level"], 1))
+        elif is_pain_measure(o) and ((timeframe_is_followup(tf) and d_tf is not None
+                                      and d_tf >= MIN_CHRONIC_DAYS)
+                                     or (d_title is not None and d_title >= MIN_CHRONIC_DAYS)):
+            found.append(("pain measured >=12 weeks after surgery", o["level"], 2))
     if not found:
         return None, None
     found.sort(key=lambda x: (x[1] != "primary", x[2]))
@@ -336,13 +351,30 @@ def chronic_from_eligibility(elig):
 ANAESTH_TERM = re.compile(r"\b(?:blocks?|an(?:a)?esthe\w*|infiltration|IPACK|PENG|"
                           r"adductor canal|erector spinae|interscalene|cryoneurolysis|opioid[- ]free|"
                           r"acute pain|pain, acute)\b", FLAGS)
-UNDERGOING_SURGERY = re.compile(r"\b(?:undergo\w*|scheduled|planned|candidates?|elective|booked|listed)\b"
-                                r"[^.\n]{0,60}?" + SURGERY, FLAGS)
+CPSP_ABBREV = re.compile(r"\bCPSP\b", FLAGS)
+# Enrolment around a coming operation. "Have undergone" (a past operation) does
+# not count: people with established pain after surgery are not perioperative.
+UNDERGOING_SURGERY = re.compile(r"\b(?:undergoing|undergo|undergoes|scheduled|planned|candidates?|elective|"
+                                r"booked|listed|awaiting|waiting)\b[^.\n]{0,60}?" + SURGERY, FLAGS)
+# A named CPSP trial is about prevention when it says so, or is perioperative
+PREVENTION_WORDS = re.compile(r"\bprevent\w*|\bincidence\b|\bdevelopment\s+of\b|\brisk\s+of\b|"
+                              r"\bpre-?emptive|\bperi-?operative|\bintra-?operative|\bpre-?operative", FLAGS)
+# Inclusion criteria that establish osteoarthritis pain (for OA trials whose
+# condition/title names no pain)
+OA_ELIG_PAIN = re.compile(r"\bpain|\bpainful|\bache|\baching", FLAGS)
 
 
 def periop_from_eligibility(elig):
     for line in re.split(r"[\n\r]+|(?<=\.)\s+", inclusion_text(elig)):
         if UNDERGOING_SURGERY.search(line) and not NEGATION.search(line):
+            return True
+    return False
+
+
+def oa_pain_from_eligibility(elig):
+    """True if an inclusion-criteria line (not negated) mentions pain."""
+    for line in re.split(r"[\n\r]+|(?<=\.)\s+", inclusion_text(elig)):
+        if OA_ELIG_PAIN.search(line) and not NEGATION.search(line):
             return True
     return False
 
@@ -372,17 +404,34 @@ def classify(conditions, titles, outcomes, eligibility=None):
     # --- 1. CPSP
     # (neuropathic phrases are blanked first: "Phantom Pain Following Amputation"
     #  and "Post-surgical Neuropathic Pain" are not acute postoperative pain)
-    postop = (any(POSTOP_CONTEXT.search(NEURO_A.sub(" ", s)) for s in strings)
+    #  A named CPSP phrase is blanked too: "persistent pain after microdiscectomy"
+    #  names an established condition, not acute postoperative pain.)
+    postop = (any(POSTOP_CONTEXT.search(CPSP_NAMED.sub(" ", NEURO_A.sub(" ", s))) for s in strings)
               or (bool(_any(ANAESTH_TERM, strings)) and periop_from_eligibility(eligibility)))
-    if _any(CPSP_NAMED, strings):
-        cpsp_basis = "named in condition/title"
-    else:
-        basis, level = cpsp_from_outcomes(outcomes)
-        if basis == "outcome names chronic postsurgical pain" or (basis and postop):
-            cpsp_basis, cpsp_level = basis, level
+    # Two routes into CPSP, both requiring pain lasting 3 months or more:
+    #  treatment  - a named postsurgical pain condition (chronic by definition,
+    #               e.g. failed back surgery syndrome), in a trial that does not
+    #               enrol people around a coming operation;
+    #  prevention - a perioperative trial (postoperative context, people
+    #               scheduled for surgery, or a named CPSP title that speaks of
+    #               prevention) with an outcome measured >=12 weeks after surgery.
+    named = bool(_any(CPSP_NAMED, strings))
+    scheduled = periop_from_eligibility(eligibility)
+    basis, level = cpsp_from_outcomes(outcomes, surgical=named or postop or scheduled)
+    perioperative = postop or scheduled or bool(_any(PREVENTION_WORDS, _any(CPSP_NAMED, strings)))
+    cpsp_type = None
+    if named and not perioperative:
+        cpsp_type, cpsp_basis = "treatment", "established CPSP named in condition/title"
+    elif basis and (named or postop or basis.startswith("outcome names")):
+        # perioperative trials are prevention studies; otherwise the people
+        # enrolled already have pain after surgery (treatment)
+        cpsp_type = "prevention" if perioperative else "treatment"
+        cpsp_basis, cpsp_level = basis, level
+    elif named or (postop and _any(CHRONIC_WORD, [o.get("measure") or "" for o in outcomes])):
+        notes.append("CPSP named but no pain outcome at >=12 weeks")
     if cpsp_basis and orofacial:
         notes.append("dental/orofacial trial matched CPSP")
-        cpsp_basis = cpsp_level = None
+        cpsp_basis = cpsp_level = cpsp_type = None
     if cpsp_basis:
         groups.append("CPSP")
 
@@ -411,6 +460,10 @@ def classify(conditions, titles, outcomes, eligibility=None):
             notes.append("musculoskeletal pain without evidence of chronicity")
     elif (site and pain or oa_pain) and orofacial:
         notes.append("orofacial/jaw musculoskeletal pain")
+    elif oa and oa_pain_from_eligibility(eligibility) and not scheduled:
+        # Reviewer 2 flag 2: inclusion criteria may establish OA pain, unless
+        # the trial enrols people scheduled for surgery (a surgical trial)
+        groups.append("MSK"); chronic_from = "osteoarthritis, pain in inclusion criteria"
     elif oa:
         notes.append("osteoarthritis without a pain word")
 
@@ -450,6 +503,6 @@ def classify(conditions, titles, outcomes, eligibility=None):
 
     group = None if excluded else ("Multiple" if len(groups) > 1 else groups[0])
     return {"groups": groups, "group": group, "excluded": excluded,
-            "cpsp_basis": cpsp_basis, "cpsp_level": cpsp_level,
+            "cpsp_basis": cpsp_basis, "cpsp_level": cpsp_level, "cpsp_type": cpsp_type,
             "chronic_from": chronic_from if "MSK" in groups or "Neuropathic" in groups else None,
             "notes": "; ".join(notes) or None}

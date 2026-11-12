@@ -11,7 +11,6 @@ NCT02311777,Neuropathic,WITHDRAWN,Other,,True,Preoperative period is very short 
 NCT02321566,Multiple,TERMINATED,Sponsor or business decision,Sponsor or business decision,False,Device manufacturer no longer supports implant covered under the IDE.
 NCT02328911,Neuropathic,WITHDRAWN,Low accrual,Low accrual,False,Difficulty recruiting qualified subjects.
 NCT02332694,Fibromyalgia,WITHDRAWN,Site or investigator,Site or investigator,False,Investigator transferred to the University of Wisconsin - Madison
-NCT02339766,CPSP,TERMINATED,Low accrual,Low accrual; Other,False,Not feasible due to difficulty with recruitment.
 NCT02341963,CPSP,TERMINATED,Low accrual,Low accrual,False,Recruitment issues
 NCT02343315,MSK,WITHDRAWN,Site or investigator,Site or investigator,False,We were unable to run the trial because of inadequate resources (staffing). The principal investigator also moved countries.
 NCT02343705,MSK,TERMINATED,Sponsor or business decision,Sponsor or business decision,False,Sponsor election
@@ -25,6 +24,7 @@ NCT02417402,MSK,WITHDRAWN,Low accrual,Low accrual,False,We had many issues relat
 NCT02426411,Neuropathic,WITHDRAWN,Not stated,,False,
 NCT02435199,Neuropathic,WITHDRAWN,Not stated,,False,
 NCT02460107,Neuropathic,TERMINATED,Low accrual,Low accrual,False,Enrolling failure (lack of participants)
+NCT02468583,MSK,TERMINATED,Not stated,,False,
 NCT02470728,CPSP,TERMINATED,Funding,Funding,False,Budgetary issues
 NCT02482714,Fibromyalgia,TERMINATED,Low accrual,Low accrual,False,recruitment difficulty
 NCT02503410,MSK,TERMINATED,Funding,Funding,False,Lack of funding to continue the study
@@ -32,7 +32,6 @@ NCT02511483,CPSP,TERMINATED,Low accrual,Low accrual,False,Difficulty with recrui
 NCT02546336,MSK,WITHDRAWN,Site or investigator,Site or investigator; Other,False,Staff for the study is no longer available.
 NCT02577653,MSK,WITHDRAWN,Site or investigator,Site or investigator; Other,False,Logistics reason at the data collection site
 NCT02581332,Fibromyalgia,WITHDRAWN,Low accrual,Low accrual,False,Due to insufficient interest in the study and enrollment has been closed
-NCT02603900,CPSP,WITHDRAWN,Not stated,,False,
 NCT02608957,MSK,TERMINATED,Sponsor or business decision,Sponsor or business decision,False,Sponsor elected to terminate the study prior to subject treatment.
 NCT02630498,CPSP,TERMINATED,Low accrual,Low accrual,False,It was not practical to continue recruiting due to lack of human resources
 NCT02667717,CRPS,TERMINATED,Low accrual,Low accrual,False,difficulties in including patients
@@ -49,7 +48,6 @@ NCT02785432,MSK,TERMINATED,Other,Other,False,Difficulty controlling for confound
 NCT02796495,Neuropathic,WITHDRAWN,Low accrual,Low accrual; Other,False,Study has been completed in terms of duration but no patient has been recruited during this time
 NCT02798900,MSK,WITHDRAWN,Funding,Funding,False,We did not get funding to develop the clinical trial.
 NCT02805673,Fibromyalgia,TERMINATED,Low accrual,Low accrual,False,lack of patient
-NCT02822196,CPSP,WITHDRAWN,Site or investigator,Site or investigator,False,Critical study personnel left the institution
 NCT02829814,Fibromyalgia,TERMINATED,Safety or futility,Safety or futility; Sponsor or business decision,False,"For business reason unrelated to safety or tolerability,Tonix discontinued this study."
 NCT02843620,MSK,WITHDRAWN,Low accrual,Low accrual; Other,False,Enrollment not started
 NCT02847702,MSK,TERMINATED,Sponsor or business decision,Sponsor or business decision; Other,False,Company decision
@@ -68,20 +66,17 @@ NCT02957617,Neuropathic,TERMINATED,Safety or futility,Safety or futility; Sponso
 NCT02987855,Multiple,WITHDRAWN,COVID-19,COVID-19; Low accrual; Site or investigator,False,Withdrawn \[COVID restrictions prevent patient enrollment or treatment. Clinical Trial facility is being closed due to viral limitations and loss of staff to perform\]
 NCT02997696,MSK,TERMINATED,Safety or futility,Safety or futility; Sponsor or business decision,False,The study was stopped for business reasons. No safety issues were reported.
 NCT03029845,Fibromyalgia,TERMINATED,Funding,Funding,False,The funding ended.
-NCT03051932,CPSP,WITHDRAWN,Funding,Funding,False,Not funded
 NCT03057197,Neuropathic,TERMINATED,Safety or futility,Safety or futility,False,The results of the interim analysis showed significant results.
 NCT03062657,Neuropathic,TERMINATED,Low accrual,Low accrual; Other,False,"Study terminated prematurely as agreed by the FDA. The FDA were satisfied that no further data was required, despite the total number of patients who completed the study in full not being the agreed upon number."
 NCT03065894,MSK,TERMINATED,Low accrual,Low accrual,False,Lack of subject enrollment
 NCT03070132,Neuropathic,WITHDRAWN,Sponsor or business decision,Sponsor or business decision; Other,False,Sponsor Decision
 NCT03093935,MSK,TERMINATED,Low accrual,Low accrual,False,Lack of subject participation
 NCT03094195,Neuropathic,TERMINATED,Safety or futility,Safety or futility; Other,False,The study was terminated early due to pre-clinical toxicity data that became available after start of trial
-NCT03098420,CPSP,TERMINATED,Low accrual,Low accrual; Other,False,Low enrollment; recruitment challenges due to competing studies in women and infant center
 NCT03110523,MSK,WITHDRAWN,Sponsor or business decision,Sponsor or business decision; Other,False,Strategic business decision
 NCT03153813,MSK,TERMINATED,Not stated,,False,
 NCT03157544,MSK,TERMINATED,Low accrual,Low accrual,False,Recruitment issues
 NCT03165825,Neuropathic,WITHDRAWN,Funding,Funding,False,funding
 NCT03171168,MSK,TERMINATED,Low accrual,Low accrual; Funding,False,Insufficient recruitment and end of funding
-NCT03177252,CPSP,WITHDRAWN,Site or investigator,Site or investigator,False,Investigator decided not to go forward with the trial.
 NCT03196258,CPSP,TERMINATED,Other,Other,False,Feasibility issues with the study treatment (in-person CBT) resulted in the study ending earlier than anticipated.
 NCT03198247,MSK,WITHDRAWN,Low accrual,Low accrual,False,low participation
 NCT03216187,CPSP,TERMINATED,Low accrual,Low accrual; Funding,False,insufficient funding and recruitment
@@ -106,7 +101,6 @@ NCT03374709,Neuropathic,WITHDRAWN,Sponsor or business decision,Sponsor or busine
 NCT03385083,MSK,TERMINATED,Other,Other,False,IRB approval lapsed
 NCT03409783,MSK,WITHDRAWN,Low accrual,Low accrual; Funding,False,Decided not to enroll into this study due to costs and other factors
 NCT03424278,MSK,WITHDRAWN,Low accrual,Low accrual,False,The participants recruitment was to difficult
-NCT03454191,CPSP,TERMINATED,Low accrual,Low accrual; Site or investigator,False,Recruitment stopped due to lack of research assistant
 NCT03470766,Multiple,TERMINATED,Sponsor or business decision,Sponsor or business decision,False,Study terminated early at the request of Sponsors.
 NCT03475797,Neuropathic,TERMINATED,Low accrual,Low accrual; Sponsor or business decision; Other,False,Sponsor's decision to stop the study prematurely due to insufficient inclusion.
 NCT03487731,MSK,WITHDRAWN,Site or investigator,Site or investigator,False,PI decided to not proceed with study
@@ -156,6 +150,7 @@ NCT03895086,Fibromyalgia,TERMINATED,Low accrual,Low accrual,False,The study was 
 NCT03903380,MSK,TERMINATED,COVID-19,COVID-19; Low accrual,False,problems recruiting the sample; derived from pandemic situation COVID-19
 NCT03914469,MSK,TERMINATED,Low accrual,Low accrual,False,Study was terminated due to poor recruitment.
 NCT03920345,MSK,TERMINATED,Low accrual,Low accrual,False,Not enough participation.
+NCT03922048,CPSP,WITHDRAWN,Low accrual,Low accrual,False,Withdrawn due to lack of enrollment.
 NCT03934528,Neuropathic,WITHDRAWN,COVID-19,COVID-19; Other,False,Unable to proceed during lockdown; post-lockdown vendor no longer supports the hardware on which the study was developed
 NCT03939416,Fibromyalgia,WITHDRAWN,Low accrual,Low accrual,False,Not enough participants were recruited for a quality study
 NCT03941223,CPSP,WITHDRAWN,Other,Other,False,study never started
@@ -183,13 +178,13 @@ NCT04137159,Neuropathic,TERMINATED,Low accrual,Low accrual,False,Lack of recruit
 NCT04141098,MSK,TERMINATED,Sponsor or business decision,Sponsor or business decision,False,The clinical trial was terminated prematurely due to receipt of CE mark
 NCT04155268,MSK,WITHDRAWN,COVID-19,COVID-19,False,Unable to conduct the study due to Covid-19.
 NCT04157374,MSK,WITHDRAWN,COVID-19,COVID-19; Low accrual,False,Lack of patients due to Covid-19 pandemic
+NCT04160091,MSK,TERMINATED,COVID-19,COVID-19; Funding,False,The study was terminated prematurely due to the COVID-19 pandemic creating uncertainty impacting trial progress and costs.
 NCT04166136,MSK,TERMINATED,COVID-19,COVID-19,False,Because of the pandemic
 NCT04191031,CPSP,TERMINATED,Safety or futility,Safety or futility,False,One of the pre-determined criteria for efficacy analysis in the interim analysis SAP for stopping the study was met.
 NCT04191161,MSK,TERMINATED,Low accrual,Low accrual,False,Recruitment difficulties
 NCT04202783,Neuropathic,SUSPENDED,COVID-19,COVID-19; Sponsor or business decision,False,Pending COVID-19 pandemic; pending product development
 NCT04204668,Multiple,WITHDRAWN,Low accrual,Low accrual,False,No participants enrolled
 NCT04240587,Neuropathic,WITHDRAWN,Low accrual,Low accrual,False,Difficulty in enrollment of study participants
-NCT04258436,CPSP,TERMINATED,Low accrual,Low accrual; Site or investigator,False,I believe 1 patient was enrolled. The original PI left the institution and the study was not continued after her departure.
 NCT04273919,MSK,WITHDRAWN,COVID-19,COVID-19,False,Due to the impact of COVID-19
 NCT04276714,CPSP,TERMINATED,Low accrual,Low accrual,False,Not enough patients (difficulty in recruiting according to the inclusion criteria)
 NCT04316013,CPSP,TERMINATED,Low accrual,Low accrual,False,Not meeting recruitment timelines
@@ -225,6 +220,7 @@ NCT04662840,MSK,WITHDRAWN,Low accrual,Low accrual,False,Difficulty in getting pa
 NCT04667364,CRPS,TERMINATED,Low accrual,Low accrual,False,Lack of recruitment
 NCT04670042,Multiple,WITHDRAWN,Low accrual,Low accrual,False,Difficulty enrolling in this patient population
 NCT04692597,MSK,TERMINATED,Funding,Funding,False,lack of funding
+NCT04693208,CPSP,TERMINATED,Safety or futility,Safety or futility,False,Adverse reactions (tonsillar bleeding after treatment)
 NCT04707157,Neuropathic,TERMINATED,Low accrual,Low accrual; Sponsor or business decision; Other,False,"The trial was slow to enroll, and the sponsor made a business decision to terminate the trial earlier than planned."
 NCT04709757,Multiple,WITHDRAWN,Other,Other,False,Intermittent paradigm replaced with change in frequency and amplitude. The updated protocol is NCT04909138
 NCT04724772,CPSP,WITHDRAWN,Site or investigator,Site or investigator,False,Stopped study due to pharmacy issues before treating patients
@@ -235,6 +231,7 @@ NCT04770064,MSK,WITHDRAWN,Funding,Funding,False,Funding was not awarded
 NCT04783532,MSK,TERMINATED,Low accrual,Low accrual,False,Difficulty with participant enrollment and intervention engagement.
 NCT04788056,CPSP,WITHDRAWN,Funding,Funding,False,no support received
 NCT04808492,MSK,WITHDRAWN,Funding,Funding; Other,False,Funding unavailable
+NCT04814368,MSK,TERMINATED,Sponsor or business decision,Sponsor or business decision; Other,False,Sponsor Decision
 NCT04819503,Multiple,TERMINATED,Low accrual,Low accrual; Other,False,Recruitment and technical difficulties
 NCT04826224,MSK,TERMINATED,Low accrual,Low accrual; Funding,False,Lack of enrollment and funding for study.
 NCT04841512,MSK,WITHDRAWN,COVID-19,COVID-19; Low accrual,False,COVID - Lack of recruitment
@@ -255,6 +252,7 @@ NCT05046639,CPSP,TERMINATED,Site or investigator,Site or investigator,False,Prin
 NCT05047679,Neuropathic,TERMINATED,Low accrual,Low accrual,False,Recruitment issues that could not be resolved in a timely manner.
 NCT05052645,Neuropathic,WITHDRAWN,Site or investigator,Site or investigator; Other,False,investigators have limited availability
 NCT05054595,MSK,WITHDRAWN,Site or investigator,Site or investigator,False,Lack of provider bandwidth
+NCT05059535,CPSP,TERMINATED,Low accrual,Low accrual,False,the recruitment rate is far too low despite an 18-month extension of the inclusion period
 NCT05088668,MSK,SUSPENDED,Other,Other,False,Logistic issues
 NCT05097729,MSK,WITHDRAWN,Safety or futility,Safety or futility,False,Preliminary data in chronic back pain patients showed no benefits of the treatment; we did not further pursue the same treatment in osteoarthritis patients.
 NCT05126615,CPSP,TERMINATED,Low accrual,Low accrual,False,difficulty of recruitment
@@ -284,7 +282,6 @@ NCT05490355,MSK,TERMINATED,Low accrual,Low accrual,False,Study ended prematurely
 NCT05494125,CPSP,TERMINATED,Safety or futility,Safety or futility,False,Unanticipated adverse events occurred in 2 participants
 NCT05561257,Neuropathic,TERMINATED,Low accrual,Low accrual; Funding; Other,False,"the necessary recruitment was no longer ensured and fundamental changes in the medical care of herpes zoster, which prevented the original research objectives and the feasibility of the study in the planned scope from being achieved"
 NCT05581849,Fibromyalgia,TERMINATED,Funding,Funding,False,Study discontinued due to unexpected funding constraints and resource limitations.
-NCT05611749,CPSP,TERMINATED,Safety or futility,Safety or futility; Low accrual,False,Enrollment was extremely low and there were too many adverse events.
 NCT05632783,MSK,WITHDRAWN,Other,,True,Study canceled before starting
 NCT05652907,MSK,TERMINATED,Safety or futility,Safety or futility; Sponsor or business decision,False,For business reasons and not for reasons related to safety or efficacy
 NCT05700331,Fibromyalgia,WITHDRAWN,Funding,Funding,False,Funding was not received
