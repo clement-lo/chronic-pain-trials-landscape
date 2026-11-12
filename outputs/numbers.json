@@ -2,6 +2,7 @@
   "pull_date": "2026-11-12",
   "api_version": "2.0.5",
   "data_timestamp": "2026-11-10T10:00:05",
+  "data_date": "2026-11-10",
   "queries": {
     "cpsp_named": {
       "n": 250,

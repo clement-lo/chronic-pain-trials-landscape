@@ -64,7 +64,7 @@ def fig_trials_per_year(N):
              f"n = {N['included']:,} trials starting {p['start_year_min']}–{p['start_year_max']}.\n"
              f"Each panel has its own y-axis. The latest years include anticipated start dates "
              f"({N['start_date_type'].get('ESTIMATED', 0):,} trials overall).\n"
-             f"Data from ClinicalTrials.gov, accessed {N['pull_date']}.",
+             f"Data from ClinicalTrials.gov, accessed {N['pull_date']} (registry data dated {N['data_date']}).",
              ha="left", va="top", fontsize=8, color=INK2)
     fig.tight_layout(h_pad=1.6)
     fig.align_ylabels(axes[:, 0])
@@ -99,7 +99,7 @@ def fig_stop_reasons(N):
              f"and withdrawn (n = {n_w:,}).\nOne main reason per trial, by fixed precedence: COVID-19, "
              f"safety or futility, low accrual, funding,\nsponsor, site or investigator, other "
              f"(keyword rules in src/stop_reasons.py).\n"
-             f"Data from ClinicalTrials.gov, accessed {N['pull_date']}.",
+             f"Data from ClinicalTrials.gov, accessed {N['pull_date']} (registry data dated {N['data_date']}).",
              ha="left", va="top", fontsize=8, color=INK2)
     fig.tight_layout()
     save(fig, "fig2_stop_reasons", N["parameters"]["figure_dpi"])

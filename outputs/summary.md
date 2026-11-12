@@ -3,7 +3,7 @@
 **The question.** Which interventional trials in five chronic pain conditions started between 2015-01-01 and 2025-12-31, who runs them, why do they stop, are their results posted, and do their primary outcomes match the IMMPACT core domains?
 
 **Data and method**
-- ClinicalTrials.gov API v2 (version 2.0.5), pulled 2026-11-12: 11 searches, 12,413 unique trials.
+- ClinicalTrials.gov API v2 (version 2.0.5), pulled 2026-11-12 (registry data dated 2026-11-10): 11 searches, 12,413 unique trials.
 - Keyword rules on conditions, titles, outcomes and inclusion criteria kept 5,043 trials in 5 groups; headache, cancer pain and acute postoperative pain were excluded.
 - Every number below is written by the code to `outputs/numbers.json`.
 

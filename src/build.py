@@ -250,6 +250,7 @@ def main():
         "pull_date": meta["pull_date"],
         "api_version": meta["api_version"],
         "data_timestamp": meta["data_timestamp"],
+        "data_date": (meta["data_timestamp"] or "")[:10],  # date ClinicalTrials.gov processed the data
         "queries": {q["key"]: {"n": q["n"], "missing_start_not_pulled": q["missing_start"]}
                     for q in meta["queries"]},
         "n_queries": len(meta["queries"]),

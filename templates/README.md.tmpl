@@ -2,7 +2,7 @@
 
 A reproducible map of interventional chronic pain trials registered on ClinicalTrials.gov with a start date from {P[start_min]} to {P[start_max]}, in {P[n_groups]} condition groups: chronic postsurgical pain, fibromyalgia, chronic low back and other musculoskeletal pain, neuropathic pain, and complex regional pain syndrome. Headache and migraine, cancer pain and acute postoperative pain are excluded.
 
-Data from ClinicalTrials.gov, accessed {N[pull_date]}.
+Data from ClinicalTrials.gov, accessed {N[pull_date]}; the registry data are as processed by ClinicalTrials.gov on {N[data_date]}. This is a snapshot: ClinicalTrials.gov is updated daily, so rerun the pipeline for current data.
 
 The one-page results are in [outputs/summary.md](outputs/summary.md).
 
@@ -50,6 +50,19 @@ The registry changes every day, so a new pull gives slightly different numbers. 
 - `outputs/fig1_trials_per_year` and `outputs/fig2_stop_reasons`: the figures, as PNG and SVG.
 - `outputs/numbers.json`: every number quoted in the text.
 
-## Licence and credit
+## How the registry data were modified
 
-The code is released under the MIT licence (see `LICENSE`). Trial data come from ClinicalTrials.gov, a service of the US National Library of Medicine: Data from ClinicalTrials.gov, accessed {N[pull_date]}.
+ClinicalTrials.gov asks anyone who redistributes its data to describe their changes. The files in `data/` and `outputs/` differ from the registry as follows.
+
+- **Selection.** Only interventional studies with a start date in the window, retrieved by the searches in `data/query_log.md` and kept by the rules in `src/rules.py`. Every retrieved study that was not kept is listed in `data/excluded.csv` with the reason.
+- **Fields.** Only the fields named in `data/query_log.md` were requested, and `data/trials.csv` keeps a subset of them.
+- **Format.** Lists (conditions, countries, primary outcomes) are joined into one cell; site countries are de-duplicated and sorted; phase codes are turned into labels such as `Phase 1/2`; each primary outcome is written as its measure followed by its time frame; `results_posted` is the registry's own results flag written as yes or no.
+- **Added by this project, not by the registry.** The condition group and every group matched, why a trial counts as chronic postsurgical pain, where its chronicity came from, which searches found it, the stop-reason categories, the IMMPACT domains and the review notes.
+- **Not changed.** All other values are copied as published, including spelling. Missing values are left blank and counted; nothing is filled in.
+
+## Licence, data rights and credit
+
+- **Code:** MIT licence (see `LICENSE`). The licence covers the code only, not the trial data.
+- **Data:** from ClinicalTrials.gov, a United States Government database run by the National Library of Medicine. This project claims no rights in the data. Some registry content may be subject to the copyright of third parties, as the ClinicalTrials.gov terms and conditions note.
+- **Credit:** Data from ClinicalTrials.gov, accessed {N[pull_date]}.
+- **No warranty:** this is an analysis of registry records, not clinical guidance, and the classifications come from keyword rules that make some errors.
